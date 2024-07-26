@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Styling</title>
+  </head>
+
+  <style>
+    .text_styling {
+      background-color: rgb(201, 167, 225);
+      font-size: xx-large;
+      font-style: italic;
+      color: chartreuse;
+    }
+
+    .container {
+      margin: auto;
+      width: 50%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: linear-gradient(rgb(49, 105, 11), rgb(208, 133, 150));
+    }
+    
+    #new_effect {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: yellow;
+    }
+    #animate_new {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: rgb(114, 87, 238);
+    }
+    #animate {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background: rgb(131, 224, 224);
+    }
+  </style>
+
+  <body>
+   
+    <div class="container">
+      <div id="animate">My animation will go here</div>
+    </div>
+    <div id="box" onclick="text_style()">Click me to style!!</div>
+
+    <div id="color" onclick="changeColor()">Click me to modify color!!</div>
+
+    <div id="new_effect">
+        <div id ="animate_new"></div>
+    </div>
+
+    <p><button onclick="myMove()">Click Me</button></p> 
+
+    <p id="p1" onmouseover="changeColorNew()" onclick="changeFont()"> Hello, Have a good day!</p>
+
+    <div id="div1" onmousedown="handleMouseOut()" onmouseup="handleMouseUp()">
+       Hello, you are hovering over me
+    </div>
+    <input id="change" type="text" onchange="handleChange(event)" placeholder="Type here">
+
+    <input id="text1" type="text" onfocus="handleFocus()" placeholder="Click to focus">
+
+    <script>
+
+       function changeColorNew()
+       {
+            document.getElementById("p1").style.textShadow = "5px 5px 0 0";
+            document.getElementById("p1").style.color = "orange";
+            document.getElementById("change").style.boxShadow = "10px 10px 0 0";
+       }
+
+       function changeFont(){
+        document.getElementById("p1").style.textDecoration = "overline";
+        document.getElementById("p1").style.fontFamily = "Times New Roman";
+        document.getElementById("p1").style.fontSize = "76px";
+       }
+      function text_style() {
+        document.getElementById("box").classList.add("text_styling");
+      }
+
+      function changeColor() {
+        document.getElementById("color").style.color = "blue";
+        document.getElementById("color").style.fontSize = "67px";
+      }
+
+      function handleFocus(){
+        console.log("Input element focused"); 
+        document.getElementById("text1").style.textDecoration = "overline";
+        document.getElementById("text1").style.textDecorationThickness = "12px";
+      }
+
+      function myMove() {
+        let id = null;
+        const elem = document.getElementById("animate_new");   
+        let pos = 0;
+        clearInterval(id);
+        id = setInterval(frame, 5);
+        function frame() {
+          if (pos == 350) {
+            clearInterval(id);
+          } else {
+            pos++; 
+            elem.style.top = pos + "px"; 
+            elem.style.left = pos + "px"; 
+          }
+        }
+      }
+
+      function handleMouseOut(){
+        console.log("Mouse out of element"); 
+        document.getElementById("div1").style.color = "green";
+        document.getElementById("div1").style.fontSize = "67px";
+      }
+
+      function handleMouseUp(){
+        console.log("Mouse up effect"); 
+        document.getElementById("div1").style.textAlign = "right";
+        document.getElementById("div1").style.textDecoration = "strike";
+        document.getElementById("div1").style.textDecorationColor = "maroon";
+      }
+
+      function handleChange(){
+        document.getElementById("change").style.color = "teal";
+        document.getElementById("change").style.fontSize = "45px";
+        document.getElementById("change").style.textAlign = "center";
+        document.getElementById("change").style.boxShadow = "10px 10px 0 0";
+        document.getElementById("change").style.textDecoration = "underline";
+        document.getElementById("change").style.textShadow="5px 5px 0 0";
+      }
+    </script>
+  </body>
+</html>

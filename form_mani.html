@@ -1,0 +1,94 @@
+<!--Form Manipulation with JavaScript
+
+Task 1: Create an HTML form with input fields for the user's name, email, and message.
+
+Task 2: Write JavaScript code to handle form submissions and store user input in an object.
+
+Task 3: Implement form validation to ensure that all required fields are filled before submission.-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Input Form</title>
+    <style>
+        /* Add CSS styles for form and pet information display */
+        /* Example: */
+        .container {
+            margin: auto;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: linear-gradient(pink,blue);
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Form Manipulation</h2>
+      <form id="newForm">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" required /><br /><br />
+        <br />
+
+        <label for="user_email">Email:</label>
+        <input
+          type="email"
+          id="user_email"
+          name="user_email"
+          placeholder="Enter your email"
+          required
+        />
+      
+        <br/>
+
+        <label for="comments">Comments:</label>
+        <textarea
+          id="comments"
+          name="comments"
+          rows="4"
+          cols="50"
+          placeholder="Enter your comments" required
+        ></textarea>
+
+        <br />
+
+        <button type="submit">Submit</button>
+      </form>
+      <div id="userList">
+        <!-- Pet information will be displayed here -->
+      </div>
+    </div>
+    <script>
+
+        function User(username, user_email, comments) {
+            this.username = username;
+            this.user_email = user_email;
+            this.comments = comments;
+        }
+
+        // Function to display pet information
+        User.prototype.displayInfo = function() {
+            return `<italic>User Name:</italic> ${this.username}, <italic>User Email:</italic> ${this.user_email}, <italic>Comments:</italic> ${this.comments}`;
+        }
+
+        document.getElementById("newForm").addEventListener("submit",function(event){
+            event.preventDefault();
+            let name = document.getElementById("username").value;
+            let email = document.getElementById("user_email").value;
+            let message = document.getElementById("comments").value;
+
+            let newUser = new User(name,email,message);
+
+            let userElement = document.createElement("div");
+            userElement.innerHTML = newUser.displayInfo();
+
+            document.getElementById("userList").appendChild(userElement);
+            document.getElementById("newForm").reset();
+        });
+
+    </script>
+  </body>
+</html>
